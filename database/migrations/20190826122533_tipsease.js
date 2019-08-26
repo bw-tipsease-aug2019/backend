@@ -2,14 +2,14 @@ exports.up = function(knex) {
   return knex.schema.createTable('users', tbl => {
     tbl.increments();
     tbl
-      .string('username', 128)
+      .string('email', 128)
       .notNullable()
       .unique();
     tbl.string('password', 128).notNullable();
     tbl
       .boolean('isServiceWorker')
       .notNullable()
-      .defaultTo(TRUE);
+      .defaultTo(0);
   });
 };
 
