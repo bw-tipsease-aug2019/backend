@@ -24,6 +24,7 @@
   "homepage": "https://github.com/bw-tipsease-aug2019/backend#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chalk": "^2.4.2",
     "cors": "^2.8.5",
     "cross-env": "^5.2.0",
     "dotenv": "^8.1.0",
