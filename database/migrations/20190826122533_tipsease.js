@@ -9,7 +9,7 @@ exports.up = function(knex) {
     tbl
       .boolean('isServiceWorker')
       .notNullable()
-      .defaultTo(TRUE);
+      .defaultTo(0);
   });
 };
 
