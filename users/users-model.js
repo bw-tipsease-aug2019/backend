@@ -14,12 +14,12 @@ function find() {
 function findBy(filter) {
   return db('users').where(filter);
 }
-
-async function add(user) {
+function add(user) {
   return db('users')
+    .returning('id')
     .insert(user)
     .then(ids => {
-      console.log(ids.rows);
+      console.log(ids);
       const [id] = ids;
       return findById(id);
     });
