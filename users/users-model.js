@@ -16,13 +16,13 @@ function findBy(filter) {
 }
 
 async function add(user) {
-  try {
-    const response = await db('users').insert(user);
-    console.log(response);
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  return db('users')
+    .insert(user)
+    .then(ids => {
+      console.log(ids);
+      const [id] = ids;
+      return findById(id);
+    });
 }
 
 function findById(id) {
