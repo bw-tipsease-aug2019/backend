@@ -19,7 +19,7 @@ async function add(user) {
   return db('users')
     .insert(user)
     .then(ids => {
-      console.log(ids);
+      console.log(ids.rows);
       const [id] = ids;
       return findById(id);
     });
