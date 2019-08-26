@@ -6,6 +6,7 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     tbl.string('password', 128).notNullable();
+    tbl.string('cPassword', 128);
     tbl
       .boolean('isServiceWorker')
       .notNullable()
