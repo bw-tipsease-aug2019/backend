@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const authRouter = require('../auth/auth-router');
 const usersRouter = require('../users/users-router');
+const tipsRouter = require('../tips/tips-router');
 
 
 const server = express();
@@ -15,6 +16,7 @@ server.use(cors());
 
 server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
+server.use('/api/tips', tipsRouter);
 
 
 server.get('/', (req, res) => {
