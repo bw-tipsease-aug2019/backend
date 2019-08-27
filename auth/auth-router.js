@@ -21,6 +21,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   let { email, password } = req.body;
+  console.log(req.body);
 
   Users.findBy({ email })
     .first()
@@ -29,6 +30,7 @@ router.post('/login', (req, res) => {
         const token = generateToken(user);
         res.status(200).json({
           message: `Welcome ${user.email}!`,
+          isServiceWorker: user.isServiceWorker,
           token,
         });
       } else {
