@@ -1,30 +1,46 @@
 exports.up = function(knex) {
   return knex.schema
+    .createTable('tips', tbl => {
+      tbl.increments();
+      // tbl.string('firstName', 128);
+      // tbl.string('lastName', 128);
+      // tbl.string('role', 128);
+      // tbl.string('company', 128);
+      // tbl.string('thumbnail', 128);
+      // tbl.integer('durationYears', 128);
+      // tbl.integer('durationMonths', 128);
+      // tbl.string('tagline', 128);
+      tbl.decimal('tipAmount');
+      tbl.text('comment', 128);
+      tbl
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE');
+    })
     .createTable('users', tbl => {
       tbl.increments();
+      tbl.string('firstName', 128);
+      tbl.string('lastName', 128);
+      tbl.string('role', 128);
+      tbl.string('company', 128);
+      tbl.string('thumbnail', 128);
+      tbl.integer('durationYears', 128);
+      tbl.integer('durationMonths', 128);
+      tbl.string('tagline', 128);
       tbl
         .string('email', 128)
         .notNullable()
         .unique();
       tbl.string('password', 128).notNullable();
       tbl.string('cPassword', 128);
-      tbl
-        .boolean('isServiceWorker')
-        .notNullable()
-        .defaultTo(false);
-    })
-    //check float,text,and one to many relationship w/users tbl
-    .createTable('tips', tbl => {
-      tbl.increments();
-      tbl
-        .string('companyName', 128)
-        .notNullable()        
-      tbl.string('serviceWorkerName', 128).notNullable();
-      tbl.string('tipAmount', 128);
-      tbl.text('comment', 128);
+      tbl.boolean('isServiceWorker').notNullable();
     });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('users');
+  return knex.schema.dropTableIfExists('users').dropTableIfExists('tips');
 };
