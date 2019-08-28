@@ -5,15 +5,25 @@ module.exports = {
   find,
   findBy,
   findById,
+  updateTips,
+  deleteTips,
 };
 
 function find() {
-  return db('tips').select(
-    'companyName',
-    'serviceWorkerName',
-    'tipAmount',
-    'comment',
-  );
+  return db('tips as t ')
+    .innerJoin('users as u', 'u.id', '=', 't.user_id')
+    .select(
+      'u.firstName',
+      'u.lastName',
+      'u.thumbnail',
+      'u.company',
+      'u.role',
+      'u.durationYears',
+      'u.durationMonths',
+      'u.tagline',
+      't.tipAmount',
+      't.comment',
+    );
 }
 
 function findBy(filter) {
@@ -34,4 +44,16 @@ function findById(id) {
   return db('tips')
     .where({ id })
     .first();
+}
+
+function updateTips(tips, id) {
+  return db('tips')
+    .update(tips)
+    .where({ id });
+}
+
+function deleteTips(id) {
+  return db('tips')
+    .del()
+    .where({ id });
 }

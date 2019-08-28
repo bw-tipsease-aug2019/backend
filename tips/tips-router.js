@@ -12,4 +12,19 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err));
 });
 
+//add new tip
+router.post('/add', (req, res) => {
+  let tips = req.body;
+  // const hash = bcrypt.hashSync(user.password, 10);
+  // user.password = hash;
+
+  Tips.add(tips)
+    .then(newTips => {
+      res.status(201).json(newTips);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
