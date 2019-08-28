@@ -1,2 +1,60 @@
 # backend
-search users by if service worker
+
+look into /auth/user return user info once logged in
+
+/api/users/servicerworkers --returns workers
+/api/users/tippers --returns tippers
+
+gotta push other 2 updates, get by id, put
+
+
+
+# ENDPOINTS
+base url: https://tipsease-buildweek-backend.herokuapp.com/api
+
+#register new user
+POST request
+url endpoint: /auth/register
+{
+	"firstName": string,
+  "lastName": string,
+  "role": string,
+  "company": string,
+  "thumbnail": string,
+  "durationYears": integer,
+  "durationMonths": integer,
+  "tagline": string,
+  "email": string,
+  "password": string,
+  "cPassword": string,
+  "isServiceWorker": boolean
+}
+
+#login as user
+POST request
+url endpoint: /auth/login
+{
+	"email":"testerJM",
+	"password":"testing123"	
+}
+
+#get list of users
+GET request
+url endpoint: /users
+
+#update a user
+PUT request
+url endpoint users/id  <---id number of user
+{
+	"email":"user@example.com",
+	"password":"testing123",
+	"isServiceWorker":false
+}
+
+#delete a user
+DELETE request
+url endpoint users/id  <---id number of user
+
+
+
+

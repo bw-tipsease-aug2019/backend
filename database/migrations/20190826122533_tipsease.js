@@ -10,13 +10,10 @@ exports.up = function(knex) {
       tbl.integer('durationYears', 128);
       tbl.integer('durationMonths', 128);
       tbl.string('tagline', 128);
-      tbl
-        .string('email', 128)
-        .notNullable()
-        .unique();
-      tbl.string('password', 128).notNullable();
+      tbl.string('email', 128);
+      tbl.string('password', 128);
       tbl.string('cPassword', 128);
-      tbl.boolean('isServiceWorker').notNullable();
+      tbl.boolean('isServiceWorker');
     })
     .createTable('tips', tbl => {
       tbl.increments();
