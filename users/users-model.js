@@ -7,12 +7,10 @@ module.exports = {
   findById,
   updateUsers,
   deleteUsers,
-  // findServiceWorkers,
+  findSW,
+  findTP,
 };
 
-// function find() {
-//   return db('users').select('email', 'password', 'id', 'isServiceWorker');
-// }
 function find() {
   return (
     db('users as u ')
@@ -20,6 +18,7 @@ function find() {
       .select(
         'u.email',
         'u.password',
+        'u.isServiceWorker',
         'u.id',
         'u.firstName',
         'u.lastName',
@@ -32,11 +31,50 @@ function find() {
       )
   );
 }
-// function findServiceWorkers() {
-//   return db('users')
-//     .select('email', 'password', 'isServiceWorker')
-//     .where('isServiceWorker', '=', '1');
-// }
+
+function findSW() {
+  return (
+    db('users as u ')
+      // .leftJoin('tips as t', 'u.id', '=', 't.user_id')
+      .select(
+        'u.email',
+        'u.password',
+        'u.isServiceWorker',
+        'u.id',
+        'u.firstName',
+        'u.lastName',
+        'u.thumbnail',
+        'u.company',
+        'u.role',
+        'u.durationYears',
+        'u.durationMonths',
+        'u.tagline',
+      )
+      .where('isServiceWorker', 'true')
+  );
+}
+
+function findTP() {
+  return (
+    db('users as u ')
+      // .leftJoin('tips as t', 'u.id', '=', 't.user_id')
+      .select(
+        'u.email',
+        'u.password',
+        'u.isServiceWorker',
+        'u.id',
+        'u.firstName',
+        'u.lastName',
+        'u.thumbnail',
+        'u.company',
+        'u.role',
+        'u.durationYears',
+        'u.durationMonths',
+        'u.tagline',
+      )
+      .where('isServiceWorker', 'false')
+  );
+}
 
 function findBy(filter) {
   return db('users').where(filter);
