@@ -7,24 +7,45 @@ const restricted = require('../auth/restricted-middleware.js');
 router.get('/', restricted, (req, res) => {
   Users.find()
     .then(users => {
+      users.map(user => {
+        if (user.isServiceWorker === 0) {
+          user.isServiceWorker = false;
+        } else {
+          user.isServiceWorker = true;
+        }
+      });
       res.json({ loggedInUser: req.user.email, users });
     })
     .catch(err => res.send(err));
 });
 
 //get just serviceworkers
-router.get('/workers', (req, res) => {
+router.get('/workers', restricted, (req, res) => {
   Users.findSW()
     .then(users => {
+      users.map(user => {
+        if (user.isServiceWorker === 0) {
+          user.isServiceWorker = false;
+        } else {
+          user.isServiceWorker = true;
+        }
+      });
       res.json({ loggedInUser: req.user.email, users });
     })
     .catch(err => res.send(err));
 });
 
 //get just tippers
-router.get('/tippers', (req, res) => {
+router.get('/tippers', restricted, (req, res) => {
   Users.findTP()
     .then(users => {
+      users.map(user => {
+        if (user.isServiceWorker === 0) {
+          user.isServiceWorker = false;
+        } else {
+          user.isServiceWorker = true;
+        }
+      });
       res.json({ loggedInUser: req.user.email, users });
     })
     .catch(err => res.send(err));

@@ -50,7 +50,7 @@ function findSW() {
         'u.durationMonths',
         'u.tagline',
       )
-      .where('isServiceWorker', 'true')
+      .where('isServiceWorker', 1)
   );
 }
 
@@ -72,7 +72,7 @@ function findTP() {
         'u.durationMonths',
         'u.tagline',
       )
-      .where('isServiceWorker', 'false')
+      .where('isServiceWorker', 0)
   );
 }
 
