@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
       users.map(user => {
         if (user.isServiceWorker === 0) {
           user.isServiceWorker = false;
-        } else {
+        } else if (user.isServiceWorker === 1) {
           user.isServiceWorker = true;
         }
       });
@@ -27,7 +27,7 @@ router.get('/workers', (req, res) => {
       users.map(user => {
         if (user.isServiceWorker === 0) {
           user.isServiceWorker = false;
-        } else {
+        } else if (user.isServiceWorker === 1) {
           user.isServiceWorker = true;
         }
       });
@@ -44,7 +44,7 @@ router.get('/tippers', (req, res) => {
       users.map(user => {
         if (user.isServiceWorker === 0) {
           user.isServiceWorker = false;
-        } else {
+        } else if (user.isServiceWorker === 1) {
           user.isServiceWorker = true;
         }
       });
