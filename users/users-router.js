@@ -4,7 +4,7 @@ const Users = require('./users-model.js');
 const restricted = require('../auth/restricted-middleware.js');
 
 //get users
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
   Users.find()
     .then(users => {
       users.map(user => {
@@ -14,13 +14,14 @@ router.get('/', restricted, (req, res) => {
           user.isServiceWorker = true;
         }
       });
-      res.json({ loggedInUser: req.user.email, users });
+      // res.json({ loggedInUser: req.user.email, users });
+      res.json(users);
     })
     .catch(err => res.send(err));
 });
 
 //get just serviceworkers
-router.get('/workers', restricted, (req, res) => {
+router.get('/workers', (req, res) => {
   Users.findSW()
     .then(users => {
       users.map(user => {
@@ -30,13 +31,14 @@ router.get('/workers', restricted, (req, res) => {
           user.isServiceWorker = true;
         }
       });
-      res.json({ loggedInUser: req.user.email, users });
+      // res.json({ loggedInUser: req.user.email, users });
+      res.json(users);
     })
     .catch(err => res.send(err));
 });
 
 //get just tippers
-router.get('/tippers', restricted, (req, res) => {
+router.get('/tippers', (req, res) => {
   Users.findTP()
     .then(users => {
       users.map(user => {
@@ -46,7 +48,8 @@ router.get('/tippers', restricted, (req, res) => {
           user.isServiceWorker = true;
         }
       });
-      res.json({ loggedInUser: req.user.email, users });
+      // res.json({ loggedInUser: req.user.email, users });
+      res.json(users);
     })
     .catch(err => res.send(err));
 });
