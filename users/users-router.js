@@ -65,6 +65,17 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.get('/:id/tips', (req, res) => {
+  const { id } = req.params;
+  Users.getTipsByUser(id)
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'could not get tips by user' });
+    });
+});
+
 router.put('/:id', (req, res) => {
   const users = req.body;
   const { id } = req.params;

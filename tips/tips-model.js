@@ -40,10 +40,23 @@ function add(tips) {
     });
 }
 
-function findById(id) {
-  return db('tips')
-    .where({ id })
-    .first();
+// function findById(id) {
+//   return db('tips')
+//     .where({ id })
+//     .first();
+// }
+
+function findById() {
+  return db('users as u ')
+    .leftJoin('tips as t', 'u.id', '=', 't.user_id')
+    .select(
+      'u.email',
+      'u.id',
+      'u.firstName',
+      'u.lastName',
+      't.tipAmount',
+      't.comment',
+    );
 }
 
 function updateTips(tips, id) {
