@@ -4,10 +4,18 @@ const Users = require('./users-model.js');
 const restricted = require('../auth/restricted-middleware.js');
 
 //get users
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
   Users.find()
     .then(users => {
-      res.json({ loggedInUser: req.user.email, users });
+      users.map(user => {
+        if (user.isServiceWorker === 0) {
+          user.isServiceWorker = false;
+        } else {
+          user.isServiceWorker = true;
+        }
+      });
+      // res.json({ loggedInUser: req.user.email, users });
+      res.json(users);
     })
     .catch(err => res.send(err));
 });
@@ -16,7 +24,15 @@ router.get('/', restricted, (req, res) => {
 router.get('/workers', (req, res) => {
   Users.findSW()
     .then(users => {
-      res.json({ loggedInUser: req.user.email, users });
+      users.map(user => {
+        if (user.isServiceWorker === 0) {
+          user.isServiceWorker = false;
+        } else {
+          user.isServiceWorker = true;
+        }
+      });
+      // res.json({ loggedInUser: req.user.email, users });
+      res.json(users);
     })
     .catch(err => res.send(err));
 });
@@ -25,7 +41,15 @@ router.get('/workers', (req, res) => {
 router.get('/tippers', (req, res) => {
   Users.findTP()
     .then(users => {
-      res.json({ loggedInUser: req.user.email, users });
+      users.map(user => {
+        if (user.isServiceWorker === 0) {
+          user.isServiceWorker = false;
+        } else {
+          user.isServiceWorker = true;
+        }
+      });
+      // res.json({ loggedInUser: req.user.email, users });
+      res.json(users);
     })
     .catch(err => res.send(err));
 });
