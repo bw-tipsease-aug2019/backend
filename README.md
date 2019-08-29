@@ -2,10 +2,10 @@
 
 look into /auth/user return user info once logged in
 
-/api/users/servicerworkers --returns workers
-/api/users/tippers --returns tippers
 
-gotta push other 2 updates, get by id, put
+/api/users/workers --returns workers - done
+/api/users/tippers --returns tippers - done
+gotta push other 2 updates, get by id, put - done
 
 
 

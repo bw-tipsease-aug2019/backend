@@ -7,23 +7,25 @@ const restricted = require('../auth/restricted-middleware.js');
 router.get('/', restricted, (req, res) => {
   Users.find()
     .then(users => {
-      res.json({ loggedInUser: req.user.email, users }); //returning who you're logged in as, because of restricted
+      res.json({ loggedInUser: req.user.email, users });
     })
     .catch(err => res.send(err));
 });
 
-router.get('/workers', restricted, (req, res) => {
+//get just serviceworkers
+router.get('/workers', (req, res) => {
   Users.findSW()
     .then(users => {
-      res.json({ loggedInUser: req.user.email, users }); //returning who you're logged in as, because of restricted
+      res.json({ loggedInUser: req.user.email, users });
     })
     .catch(err => res.send(err));
 });
 
-router.get('/tippers', restricted, (req, res) => {
+//get just tippers
+router.get('/tippers', (req, res) => {
   Users.findTP()
     .then(users => {
-      res.json({ loggedInUser: req.user.email, users }); //returning who you're logged in as, because of restricted
+      res.json({ loggedInUser: req.user.email, users });
     })
     .catch(err => res.send(err));
 });
