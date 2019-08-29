@@ -6,7 +6,11 @@ exports.up = function(knex) {
       tbl.string('lastName', 128);
       tbl.string('role', 128);
       tbl.string('company', 128);
-      tbl.string('thumbnail', 128);
+      tbl
+        .string('thumbnail', 128)
+        .defaultTo(
+          'https://www.clker.com/cliparts/3/c/9/0/15346636991003506792default_user.med.png',
+        );
       tbl.integer('durationYears', 128);
       tbl.integer('durationMonths', 128);
       tbl.string('tagline', 128);
