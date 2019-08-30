@@ -55,10 +55,4 @@ function generateToken(user) {
   return jwt.sign(payload, secrets.jwtSecret, options);
 }
 
-router.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.status(200).json({ message: 'he gone' });
-  });
-});
-
 module.exports = router;

@@ -13,18 +13,6 @@ router.get('/', (req, res) => {
     .catch(err => res.send(err));
 });
 
-//get tips by id
-
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  Tips.findById(id)
-    .then(tip => {
-      res.status(200).json(tip);
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Could not get tip' });
-    });
-});
 
 //add new tip
 router.post('/add', (req, res) => {
